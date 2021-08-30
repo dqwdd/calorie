@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">칼로리계산기</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment임</string>
+</resources>
