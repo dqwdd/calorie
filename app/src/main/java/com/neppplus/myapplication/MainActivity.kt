@@ -1,5 +1,7 @@
 package com.neppplus.myapplication
 
+import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -7,13 +9,7 @@ import android.widget.RelativeLayout
 import androidx.appcompat.app.ActionBar
 import com.neppplus.myapplication.adapters.MainViewPagerAdapter
 import kotlinx.android.synthetic.main.activity_main.*
-//프로그레스바 100이어도 올라가는 비율 적당하게 하고
-//200일때도 일정하게 보이게 하고 그런거
-
-// 칼로리 오픈 API 사용할건데
-// for문 돌리면 되는건지
-
-// 운동 누르면 해당 운동 이미지 움직이게 하고 싶은데 로티로 해결이 되는지 아니면 다른거 써야하는지
+import kotlinx.android.synthetic.main.fragment_calendar.*
 
 //
 
@@ -27,6 +23,7 @@ class MainActivity : BaseActivity() {
         setupEvents()
         setValues()
         configureBottomNavigation()
+
     }
 
 
@@ -52,6 +49,15 @@ class MainActivity : BaseActivity() {
 
 
 }
+
+
+
+
+
+
+
+
+
 
 
 
