@@ -3,41 +3,23 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".fragments.ProfileFragment">
 
 
-    <TextView
-        android:id="@+id/textView"
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/profileTabLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="오늘 섭취한 칼로리" />
+        app:tabIndicatorColor="@color/black"
+        app:tabMode="scrollable"
+        app:tabSelectedTextColor="@color/black"/>
 
-    <TextView
-        android:id="@+id/text2View"
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/profileViewPager"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="오늘 소모한 칼로리" />
-
-    <ProgressBar
-        android:id="@+id/progressBar"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <TextView
-        android:id="@+id/tex2t2View"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="오늘 잔여/과잉 칼로리" />
-
-
-
-    <TextView
-        android:id="@+id/tex4t2View"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="지난 날짜 보여주면서 소모한 칼로리 표시" />
+        android:layout_height="match_parent"/>
 
 
 </LinearLayout>
