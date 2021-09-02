@@ -13,16 +13,61 @@
         android:orientation="horizontal">
 
         <EditText
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:hint="Calorie"
+            android:layout_width="250dp"
+            android:layout_height="50dp"
+            android:hint="Calorie" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
             android:layout_weight="1"/>
 
         <Button
             android:id="@+id/button4"
-            android:layout_width="wrap_content"
+            android:layout_width="120dp"
             android:layout_height="wrap_content"
-            android:text="등록" />
+            android:text="검색" />
+
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:id="@+id/but12to2n4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="저장버튼이 리사이클러뷰에 가게, 혹은 끌어다 놓을 수 있게"
+        android:layout_marginTop="30dp"
+        android:layout_gravity="center"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="35dp">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="아침"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="점심"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="저녁"/>
 
     </LinearLayout>
 
