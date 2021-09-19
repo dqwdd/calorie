@@ -1,55 +1,39 @@
 package com.neppplus.myapplication.fragments
 
+import android.annotation.SuppressLint
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.LinearLayout
-import android.widget.TextView
-import androidx.annotation.Nullable
+import android.widget.*
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.neppplus.myapplication.MainActivity
 import com.neppplus.myapplication.R
-import com.neppplus.myapplication.adapters.CalendarAdapter
 import kotlinx.android.synthetic.main.fragment_calendar.view.*
+import java.io.FileInputStream
+import java.io.FileOutputStream
 import java.text.SimpleDateFormat
 import java.util.*
 
 
 class CalendarFragment : Fragment() {
-    private val TAG = javaClass.simpleName
-    lateinit var mContext: Context
 
-    var pageIndex = 0
-    lateinit var currentDate: Date
-
-    lateinit var calendar_year_month_text: TextView
-    lateinit var calendar_layout: LinearLayout
-    lateinit var calendar_view: RecyclerView
-    lateinit var calendarAdapter: CalendarAdapter
-
-    companion object {
-        var instance: CalendarFragment? = null
-    }
-
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        if (context is MainActivity) {
-            mContext = context
-        }
-    }
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        instance = this
-    }
-
-
-
-
+    var userID: String = "userID"
+    lateinit var fname: String
+    lateinit var str: String
+    lateinit var calendarView: CalendarView
+    lateinit var updateBtn: Button
+    lateinit var deleteBtn: Button
+    lateinit var saveBtn: Button
+    lateinit var diaryTextView: TextView
+    lateinit var diaryContent:TextView
+    lateinit var title: TextView
+    lateinit var contextEditText: EditText
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -57,7 +41,41 @@ class CalendarFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_calendar, container, false)
-        initView(view)
+
+        calendarView=view.findViewById(R.id.calendarView)
+        diaryTextView=view.findViewById(R.id.diaryTextView)
+        saveBtn=view.findViewById(R.id.saveBtn)
+        deleteBtn=view.findViewById(R.id.deleteBtn)
+        updateBtn=view.findViewById(R.id.updateBtn)
+        diaryContent=view.findViewById(R.id.diaryContent)
+        title=view.findViewById(R.id.title)
+        contextEditText=view.findViewById(R.id.contextEditText)
+
+        title.text = "달력 일기장"
+
+        calendarView.setOnDateChangeListener { view, year, month, dayOfMonth ->
+            diaryTextView.visibility = View.VISIBLE
+            saveBtn.visibility = View.VISIBLE
+            contextEditText.visibility = View.VISIBLE
+            diaryContent.visibility = View.INVISIBLE
+            updateBtn.visibility = View.INVISIBLE
+            deleteBtn.visibility = View.INVISIBLE
+            diaryTextView.text = String.format("%d / %d / %d", year, month + 1, dayOfMonth)
+            contextEditText.setText("")
+            checkDay(year, month, dayOfMonth, userID)
+        }
+
+        saveBtn.setOnClickListener {
+            saveDiary(fname)
+            contextEditText.visibility = View.INVISIBLE
+            saveBtn.visibility = View.INVISIBLE
+            updateBtn.visibility = View.VISIBLE
+            deleteBtn.visibility = View.VISIBLE
+            str = contextEditText.text.toString()
+            diaryContent.text = str
+            diaryContent.visibility = View.VISIBLE
+        }
+
         return view
     }
 
@@ -65,34 +83,93 @@ class CalendarFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
     }
 
-    fun initView(view: View) {
-        pageIndex -= (Int.MAX_VALUE / 2)
-        Log.e(TAG, "Calender Index: $pageIndex")
-        calendar_year_month_text = view.calendar_year_month_text
-        calendar_layout = view.calendar_layout
-        calendar_view = view.calendar_view
-        // 날짜 적용
-        val date = Calendar.getInstance().run {
-            add(Calendar.MONTH, pageIndex)
-            time
+
+    // 달력 내용 조회, 수정
+    fun checkDay(cYear: Int, cMonth: Int, cDay: Int, userID: String) {
+        //저장할 파일 이름설정
+        fname = "" + userID + cYear + "-" + (cMonth + 1) + "" + "-" + cDay + ".txt"
+
+
+        var fileInputStream: FileInputStream
+        try {
+
+            fileInputStream = requireActivity().openFileInput(fname)
+            val fileData = ByteArray(fileInputStream.available())
+            fileInputStream.read(fileData)
+            fileInputStream.close()
+            str = String(fileData)
+            contextEditText.visibility = View.INVISIBLE
+            diaryContent.visibility = View.VISIBLE
+            diaryContent.text = str
+            saveBtn.visibility = View.INVISIBLE
+            updateBtn.visibility = View.VISIBLE
+            deleteBtn.visibility = View.VISIBLE
+            updateBtn.setOnClickListener {
+                contextEditText.visibility = View.VISIBLE
+                diaryContent.visibility = View.INVISIBLE
+                contextEditText.setText(str)
+                saveBtn.visibility = View.VISIBLE
+                updateBtn.visibility = View.INVISIBLE
+                deleteBtn.visibility = View.INVISIBLE
+                diaryContent.text = contextEditText.text
+            }
+            deleteBtn.setOnClickListener {
+                diaryContent.visibility = View.INVISIBLE
+                updateBtn.visibility = View.INVISIBLE
+                deleteBtn.visibility = View.INVISIBLE
+                contextEditText.setText("")
+                contextEditText.visibility = View.VISIBLE
+                saveBtn.visibility = View.VISIBLE
+                removeDiary(fname)
+            }
+            if (diaryContent.text == null) {
+                diaryContent.visibility = View.INVISIBLE
+                updateBtn.visibility = View.INVISIBLE
+                deleteBtn.visibility = View.INVISIBLE
+                diaryTextView.visibility = View.VISIBLE
+                saveBtn.visibility = View.VISIBLE
+                contextEditText.visibility = View.VISIBLE
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
         }
-        currentDate = date
-        Log.e(TAG, "$date")
-        // 포맷 적용
-        var datetime: String = SimpleDateFormat(
-            //mContext.getString(R.string.calendar_year_month_format),
-            //Locale.KOREA
-        ).format(date.time)
-        calendar_year_month_text.setText(datetime)
-    }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        instance = null
     }
 
 
 
+    // 달력 내용 제거
+    @SuppressLint("WrongConstant")
+    fun removeDiary(readDay: String?) {
+        var fileOutputStream: FileOutputStream
+        try {
+            fileOutputStream = requireActivity().openFileOutput(readDay,
+                AppCompatActivity.MODE_NO_LOCALIZED_COLLATORS
+            )
+            val content = ""
+            fileOutputStream.write(content.toByteArray())
+            fileOutputStream.close()
+        } catch (e: java.lang.Exception) {
+            e.printStackTrace()
+        }
+    }
+
+
+    // 달력 내용 추가
+
+    @SuppressLint("WrongConstant")
+    fun saveDiary(readDay: String?) {
+        var fileOutputStream: FileOutputStream
+        try {
+            fileOutputStream = requireActivity().openFileOutput(readDay,
+                AppCompatActivity.MODE_NO_LOCALIZED_COLLATORS
+            )
+            val content = contextEditText.text.toString()
+            fileOutputStream.write(content.toByteArray())
+            fileOutputStream.close()
+        } catch (e: java.lang.Exception) {
+            e.printStackTrace()
+        }
+    }
 
 
 }
