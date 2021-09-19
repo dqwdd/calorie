@@ -265,7 +265,7 @@
         android:layout_width="300dp"
         android:layout_height="300dp"
         android:layout_gravity="center"
-        app:lottie_rawRes="@raw/dog_running"
+        app:lottie_rawRes="@raw/loading_among_us"
         app:lottie_autoPlay="true"
         app:lottie_loop="true"/>
 
