@@ -14,9 +14,9 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.neppplus.myapplication.MainActivity
 import com.neppplus.myapplication.R
+import com.neppplus.myapplication.datas.CalendarTextData
 import kotlinx.android.synthetic.main.fragment_calendar.view.*
-import java.io.FileInputStream
-import java.io.FileOutputStream
+import java.io.*
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -74,10 +74,20 @@ class CalendarFragment : Fragment() {
             str = contextEditText.text.toString()
             diaryContent.text = str
             diaryContent.visibility = View.VISIBLE
+
+            val inputText = contextEditText.text.toString()
+            diaryContent.text = inputText
+
+            Toast.makeText(context, "내용이 저장되었습니다.", Toast.LENGTH_SHORT).show()
+
+
         }
 
         return view
     }
+
+
+
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -104,6 +114,7 @@ class CalendarFragment : Fragment() {
             saveBtn.visibility = View.INVISIBLE
             updateBtn.visibility = View.VISIBLE
             deleteBtn.visibility = View.VISIBLE
+
             updateBtn.setOnClickListener {
                 contextEditText.visibility = View.VISIBLE
                 diaryContent.visibility = View.INVISIBLE
@@ -113,6 +124,7 @@ class CalendarFragment : Fragment() {
                 deleteBtn.visibility = View.INVISIBLE
                 diaryContent.text = contextEditText.text
             }
+
             deleteBtn.setOnClickListener {
                 diaryContent.visibility = View.INVISIBLE
                 updateBtn.visibility = View.INVISIBLE
@@ -122,6 +134,7 @@ class CalendarFragment : Fragment() {
                 saveBtn.visibility = View.VISIBLE
                 removeDiary(fname)
             }
+
             if (diaryContent.text == null) {
                 diaryContent.visibility = View.INVISIBLE
                 updateBtn.visibility = View.INVISIBLE

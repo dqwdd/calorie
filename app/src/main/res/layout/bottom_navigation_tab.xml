@@ -55,5 +55,4 @@
             android:src="@drawable/selector_profile" />
     </RelativeLayout>
 
-
 </LinearLayout>

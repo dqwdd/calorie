@@ -3,10 +3,7 @@ package com.neppplus.myapplication.adapters
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
-import com.neppplus.myapplication.fragments.CalendarFragment
-import com.neppplus.myapplication.fragments.CalorieFragment
-import com.neppplus.myapplication.fragments.HealthFragment
-import com.neppplus.myapplication.fragments.ProfileFragment
+import com.neppplus.myapplication.fragments.*
 
 class MainViewPagerAdapter ( fm : FragmentManager) : FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT){
 
