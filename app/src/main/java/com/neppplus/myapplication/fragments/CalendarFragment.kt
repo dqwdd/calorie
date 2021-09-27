@@ -21,7 +21,7 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 
-class CalendarFragment : Fragment() {
+class CalendarFragment : BaseFragment() {
 
     var userID: String = "userID"
     lateinit var fname: String
@@ -87,10 +87,16 @@ class CalendarFragment : Fragment() {
     }
 
 
-
-
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
+        setupEvents()
+        setValues()
+    }
+
+    override fun setupEvents() {
+    }
+
+    override fun setValues() {
     }
 
 

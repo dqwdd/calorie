@@ -9,7 +9,7 @@ import com.neppplus.myapplication.R
 import com.neppplus.myapplication.adapters.ProfileViewPagerAdapter
 import kotlinx.android.synthetic.main.fragment_profile.*
 
-class ProfileFragment : Fragment() {
+class ProfileFragment : BaseFragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -21,6 +21,14 @@ class ProfileFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         configureTopNavigation()
+        setupEvents()
+        setValues()
+    }
+
+    override fun setupEvents() {
+    }
+
+    override fun setValues() {
     }
 
 

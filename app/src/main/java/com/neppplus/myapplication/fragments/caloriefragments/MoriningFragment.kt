@@ -6,8 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.neppplus.myapplication.R
+import com.neppplus.myapplication.fragments.BaseFragment
 
-class MoriningFragment : Fragment() {
+class MoriningFragment : BaseFragment() {
 
 
     override fun onCreateView(
@@ -16,6 +17,22 @@ class MoriningFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.calorie_fragment_morning, container, false)
+    }
+
+
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        setupEvents()
+        setValues()
+    }
+
+
+
+    override fun setupEvents() {
+    }
+
+    override fun setValues() {
     }
 
 }

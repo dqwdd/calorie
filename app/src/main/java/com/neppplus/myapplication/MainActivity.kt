@@ -12,6 +12,7 @@ import android.widget.RelativeLayout
 import androidx.appcompat.app.ActionBar
 import androidx.core.view.ViewCompat.setNestedScrollingEnabled
 import androidx.viewpager.widget.ViewPager
+import com.neppplus.myapplication.adapters.FoodCalorieDataRecyclerAdapter
 import com.neppplus.myapplication.adapters.MainViewPagerAdapter
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_calendar.*
@@ -23,7 +24,12 @@ import java.io.FileWriter
 
 class MainActivity : BaseActivity() {
 
+    val key = "ZttZgKaWHUnvsLX%2FB8UWGVI9d3Uj6PqProTiP2Dnq78CyAgcSK6%2B%2F1r%2FdtmJoWXOTNDBb2G1PxVYeB32Iq6teA%3D%3D"
+
 //    https://everybody-yeah.tistory.com/6
+
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)

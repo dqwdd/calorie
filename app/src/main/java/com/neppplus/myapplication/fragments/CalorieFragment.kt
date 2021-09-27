@@ -1,17 +1,43 @@
 package com.neppplus.myapplication.fragments
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
+import android.widget.AutoCompleteTextView
+import androidx.recyclerview.widget.RecyclerView
+import com.example.apipractice.json.ItemData
+import com.example.apipractice.json.Library
 import com.neppplus.myapplication.R
 import com.neppplus.myapplication.adapters.CalorieViewPagerAdapter
 import com.neppplus.myapplication.adapters.ProfileViewPagerAdapter
 import kotlinx.android.synthetic.main.fragment_calorie.*
 import kotlinx.android.synthetic.main.fragment_profile.*
+import org.json.JSONObject
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
-class CalorieFragment : Fragment() {
+class CalorieFragment : BaseFragment() {
+
+    companion object {
+        private var frag : CalorieFragment? = null
+        fun getFrag() : CalorieFragment {
+            if (frag == null) {
+                frag = CalorieFragment()
+            }
+            return frag!!
+        }
+    }
+
+    val key = "ZttZgKaWHUnvsLX%2FB8UWGVI9d3Uj6PqProTiP2Dnq78CyAgcSK6%2B%2F1r%2FdtmJoWXOTNDBb2G1PxVYeB32Iq6teA%3D%3D"
+
+    val mItemList = ArrayList<ItemData>()
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -24,8 +50,15 @@ class CalorieFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         configureTopNavigation()
+        aa()
         setupEvents()
         setValues()
+    }
+
+    override fun setupEvents() {
+    }
+
+    override fun setValues() {
     }
 
     private fun configureTopNavigation(){
@@ -33,12 +66,38 @@ class CalorieFragment : Fragment() {
         CalorieTabLayout.setupWithViewPager(CalorieViewPager)
     }
 
+    fun aa() {
+        apiService.getRequestCalorieData(key).enqueue(object : Callback<Library> {
+            override fun onResponse(call: Call<Library>, response: Response<Library>) {
+                if (response.isSuccessful) {
 
-    fun setupEvents() {
+                    Log.d("응답 성공",response.body()!!.toString())
+
+                    val basicResponse = response.body()!!
+                    mItemList.addAll(basicResponse.body.items)
+
+
+                    var autoCompleteTextView = view?.findViewById<AutoCompleteTextView>(R.id.autoCompleteTextView)
+                    var adapter = ArrayAdapter<String>(mContext, android.R.layout.simple_dropdown_item_1line, items)
+                    if (autoCompleteTextView != null) {
+                        autoCompleteTextView.setAdapter(adapter)
+                    }
+
+                }
+                else {
+                    val jsonObj = JSONObject(response.errorBody()!!.string())
+                    Log.d("응답 실패", jsonObj.toString())
+                }
+
+            }
+
+            override fun onFailure(call: Call<Library>, t: Throwable) {
+                Log.d("연결 실패", call.toString())
+            }
+        })
+
+
+
     }
-
-    fun setValues() {}
-
-
 
 }

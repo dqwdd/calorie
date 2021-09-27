@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/mainViewPager"
         android:layout_width="match_parent"
@@ -21,6 +20,5 @@
         android:layout_width="match_parent"
         android:layout_alignParentBottom="true"
         android:layout_height="52dp" />
-
 
 </RelativeLayout>
