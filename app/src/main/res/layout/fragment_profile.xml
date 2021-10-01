@@ -7,19 +7,33 @@
     android:orientation="vertical"
     tools:context=".fragments.ProfileFragment">
 
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/ProfileTabLayout"
+    <ScrollView
+        android:id="@+id/scrollView"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:background="#ffffff"
-        app:tabIndicatorColor="#2c77f1"
-        android:layout_alignParentTop="true"
-        android:elevation="5dp" />
+        android:layout_height="match_parent">
 
-    <androidx.viewpager.widget.ViewPager
-        android:id="@+id/ProfileViewPager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/ProfileTabLayout"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/ProfileTabLayout"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="#ffffff"
+                app:tabIndicatorColor="#2c77f1"
+                android:layout_alignParentTop="true"
+                android:elevation="5dp" />
+
+            <androidx.viewpager.widget.ViewPager
+                android:id="@+id/ProfileViewPager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@id/ProfileTabLayout"/>
+
+        </RelativeLayout>
+
+    </ScrollView>
 
 </RelativeLayout>

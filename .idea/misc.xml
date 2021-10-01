@@ -3,6 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/AAndroidStudio/New-Project/Calorie/app/src/main/res/layout/fragment_calendar.xml" value="0.25364583333333335" />
+        <entry key="..\:/AAndroidStudio/New-Project/Calorie/app/src/main/res/layout/fragment_calorie.xml" value="0.25364583333333335" />
+        <entry key="..\:/AAndroidStudio/New-Project/Calorie/app/src/main/res/layout/fragment_profile.xml" value="0.25364583333333335" />
         <entry key="..\:/AAndroidStudio/New-Project/pictureadapter-master/pictureadapter-master/app/src/main/res/drawable-v24/ic_baseline_insert_invitation_24.xml" value="0.26979166666666665" />
         <entry key="..\:/AAndroidStudio/New-Project/pictureadapter-master/pictureadapter-master/app/src/main/res/drawable/selector.xml" value="0.26979166666666665" />
         <entry key="..\:/AAndroidStudio/New-Project/pictureadapter-master/pictureadapter-master/app/src/main/res/drawable/selector_calendar.xml" value="0.26979166666666665" />
@@ -50,6 +53,7 @@
         <entry key="..\:/Users/NePPPlus_004/AndroidStudioProjects/MyApplication2/app/src/main/res/layout/activity_main.xml" value="0.36614583333333334" />
         <entry key="..\:/Users/NePPPlus_004/AndroidStudioProjects/MyApplication2/app/src/main/res/layout/bottom_navigation_tab.xml" value="0.33" />
         <entry key="..\:/Users/NePPPlus_004/AndroidStudioProjects/MyApplication2/app/src/main/res/menu/bottom_menu.xml" value="0.36614583333333334" />
+        <entry key="..\:/Users/dqwdd/AppData/Local/Android/Sdk/platforms/android-31/data/res/layout/simple_dropdown_item_1line.xml" value="0.25364583333333335" />
       </map>
     </option>
   </component>
