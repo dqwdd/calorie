@@ -8,7 +8,7 @@ import retrofit2.http.*
 
 interface ServerAPIService {
 
-    @GET("/1470000/FoodNtrIrdntInfoService/getFoodNtrItdntList") //시도별 실시간 측정정보 조회 주소
+    @GET("/1470000/FoodNtrIrdntInfoService/getFoodNtrItdntList") //칼로리 데이터 얻는 주소
     fun getRequestCalorieData(
         @Query("ServiceKey", encoded = true) key: String,
         @Query("type") type: String="json") : Call<Library>

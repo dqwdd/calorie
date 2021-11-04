@@ -10,6 +10,17 @@ import kotlinx.android.synthetic.main.fragment_profile.*
 
 class ProfileFragment : BaseFragment() {
 
+    companion object {
+        private var frag : CalorieFragment? = null
+        fun getFrag() : CalorieFragment {
+            if (frag == null) {
+                frag = CalorieFragment()
+            }
+            return frag!!
+        }
+    }
+
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

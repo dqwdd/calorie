@@ -4,21 +4,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".fragments.profilefragments.DayFragment">
+    tools:context=".fragments.profilefragments.DayFragment"
+    android:padding="20dp">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="오늘 소모한 칼로리"
+        android:text="유저 아이디"
         android:textSize="40dp"/>
 
-    <ImageView
-        android:layout_width="300dp"
-        android:layout_height="150dp"
-        android:src="@drawable/graph"/>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
 
 </LinearLayout>

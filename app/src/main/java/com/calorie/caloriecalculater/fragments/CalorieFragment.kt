@@ -72,11 +72,19 @@ class CalorieFragment : BaseFragment() {
                     val basicResponse = response.body()!!
                     mItemList.addAll(basicResponse.body.items)
 
+
+                    /*
+                    var items = arrayOf("SM3", "SM5", "SM7", "SONATA", "AVANTE", "SOUL", "K5", "K7")
+
                     var autoCompleteTextView = view?.findViewById<AutoCompleteTextView>(R.id.autoCompleteTextView)
-                    var adapter = ArrayAdapter<String>(mContext, android.R.layout.simple_dropdown_item_1line)
+                    var adapterr = ArrayAdapter<String>(mContext, android.R.layout.simple_dropdown_item_1line, items)
                     if (autoCompleteTextView != null) {
-                        autoCompleteTextView.setAdapter(adapter)
+                        autoCompleteTextView.setAdapter(adapterr)
                     }
+                    */
+
+
+
 
                 }
                 else {
